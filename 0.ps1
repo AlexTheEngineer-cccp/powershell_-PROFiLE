@@ -80,22 +80,6 @@ Add-Computer `
     -OUPath     "OU=DefaultPolicy,OU=Servers,DC=int,DC=atosbox,DC=ru" 
 #endregion 
 
-#region tweak Powershell ISE
-@'
-
-function prompt {     
-    Write-Host "$((Get-Date).ToString("hh:mm:ss"))" -NoNewLine -ForegroundColor Gray 
-    Write-Host " $($($env:COMPUTERNAME))"           -NoNewLine -ForegroundColor Cyan 
-    Write-Host " $(Get-Location)>"                  -NoNewLine -ForegroundColor White 
-    return " " 
-}
-$host.ui.RawUI.WindowTitle = “$env:COMPUTERNAME $env:USERNAME”
-
-'@ | Out-File -FilePath $profile -Append
-#endregion tweak Powershell ISE
-
-
-
 #region File Explorer tweaks 
 function SetDwordHKCUpath { 
     param($path, $name, $value) 
