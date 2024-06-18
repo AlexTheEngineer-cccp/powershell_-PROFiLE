@@ -1,6 +1,6 @@
 psedit C:\Scripts\0.ps1
 $isPriviliged = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')
-if($isPriviliged ){$root = "#"}else{$root = ""}
+if($isPriviliged ){$root = "#"}else{$root = "$"}
 $prpt = "$root>"
 function prompt {     
     Write-Host "$((Get-Date).ToString("hh:mm:ss"))" -NoNewLine -ForegroundColor Gray 
@@ -9,7 +9,14 @@ function prompt {
     return " " 
 }
 
-$host.ui.RawUI.WindowTitle = "$($root)$($env:COMPUTERNAME) $($env:USERDOMAIN)/$($env:USERNAME)"
+if ($isPriviliged)
+{
+    $host.ui.RawUI.WindowTitle = "Administrator: $($env:COMPUTERNAME) $($env:USERDOMAIN)/$($env:USERNAME)"
+}
+else
+{
+    $host.ui.RawUI.WindowTitle = "$($env:COMPUTERNAME) $($env:USERDOMAIN)/$($env:USERNAME)"
+}
 
 $psISE.Options.SelectedScriptPaneState = 'Right'
 #$psISE.PowerShellTabs.VerticalAddOnTools.IsVisible = $false
