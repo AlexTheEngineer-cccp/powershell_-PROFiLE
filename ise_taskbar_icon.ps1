@@ -16,7 +16,7 @@
   </CustomTaskbarLayoutCollection> 
 </LayoutModificationTemplate> 
 '@ | 
-Out-File -FilePath "$env:TEMP\taskbar.iSE.xml" -Encoding ascii -Force 
+Out-File -FilePath "$env:TEMP\taskbar.iSE.xml" -Encoding UTF8 -Force 
 Import-StartLayout "$env:TEMP\taskbar.iSE.xml" -MountPath c:\  
 rm "$env:TEMP\taskbar.iSE.xml"
 
